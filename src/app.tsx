@@ -3,6 +3,8 @@ import * as styles from "./app.module.scss";
 import RegisterCardForm from "./components/RegisterCardForm";
 import Menu from "./components/Menu";
 import Header from "./components/Header";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 export const App: React.FC = () => {
   const [isMenu, setIsMenu] = useState<boolean>(false);
@@ -12,7 +14,7 @@ export const App: React.FC = () => {
     setIsMenu(!isMenu);
   };
   return (
-    
+    <Provider store={store}>
       <div className={styles.container}>
         {/* Pass the toggleContent function to the Header */}
         <Header isMenu={isMenu} toggleContent={toggleContent} />
@@ -25,7 +27,7 @@ export const App: React.FC = () => {
           }}/>}
         </div>
       </div>
-    
+      </Provider>
   );
 };
 

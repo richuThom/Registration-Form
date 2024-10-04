@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../utils/store';
+import { selectUserFirstName } from '../utils/userSlice';
 
 interface RegisterCardFormProps {
     onSubmit: (data: { cardNumber: string; cvv: string; expiry: string }) => void;
@@ -33,11 +36,11 @@ const formatExpiry = (value: string) => {
         .slice(0, 5); // Limit to 5 characters
 };
 
-  
+const firstName = useSelector((state: RootState) => selectUserFirstName(state));
   return (
     <div className="container">
         
-      <h2>Welcome Richu</h2>
+      <h2>Welcome {firstName}</h2>
       <form onSubmit={handleSubmit}>
       <label htmlFor="cardNumber">Card Number</label>
                 <input
